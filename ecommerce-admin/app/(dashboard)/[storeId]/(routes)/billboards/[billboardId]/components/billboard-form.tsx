@@ -16,7 +16,6 @@ import { Separator } from "@/components/ui/separator";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { AlertModal } from "@/components/modals/alert-modal";
-import { useOrigin } from "@/hooks/use-origin";
 import ImageUpload from "@/components/ui/image-upload";
 
 interface BillboardFormProps {
@@ -38,6 +37,7 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
 
     const [open, setOpen] = useState(false);
     const [loading, setLoading] = useState(false);
+
     const title = initialData ? "Edit billboard" : "Create billboard";
     const description = initialData ? "Edit a billboard" : "Add a new billboard";
     const toastMessage = initialData ? "Billboard updated." : "Create billboard.";
@@ -76,10 +76,13 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
             setLoading(true);
             await axios.delete(`/api/${params.storeId}/billboards/${params.billboardId}`);
             router.refresh();
-            router.push("/"); //lead to 'root' file
+            router.push(`/${params.storeId}/billboards`);
             toast.success("Billboard deleted.");
         } catch (error) {
             toast.error("Make sure you removed all categories using this billboard first.");
+        } finally {
+            setLoading(false);
+            setOpen(false);
         }
     }
 
@@ -148,7 +151,6 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
                     </Button>
                 </form>
             </Form>
-            <Separator />
         </> 
     );
 };
