@@ -51,6 +51,13 @@ npx prisma db push
 npm run dev
 ```
 
+### Available test-card for buying feature:
+| Number         | CVC                              | DATE
+| :-------------- | :--------------------------------------- |
+| 4242424242424242          | Any | Any|
+
+
+
 ## Available commands
 
 Running commands with npm `npm run [command]`
