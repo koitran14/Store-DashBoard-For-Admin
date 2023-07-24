@@ -52,9 +52,9 @@ npm run dev
 ```
 
 ### Available test-card for buying feature:
-| Number         | CVC                 | DATE
-| :-------------- | :----------------- | :----------------- |
-| 4242424242424242          | Any | Any|
+| Brand      | Number         | CVC                 | Date
+| :--------------| :-------------- | :----------------- | :----------------- |
+| Visa   | 4242424242424242          | Any | Any|
 
 
 
