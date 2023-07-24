@@ -56,12 +56,3 @@ npm run dev
 | :--------------| :-------------- | :----------------- | :----------------- |
 | Visa   | 4242424242424242          | Any | Any|
 
-
-
-## Command to run
-
-Running commands with npm `npm run [command]`
-
-| command         | description                              |
-| :-------------- | :--------------------------------------- |
-| `dev`           | Starts a development instance of the app |
