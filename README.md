@@ -51,10 +51,8 @@ npx prisma db push
 npm run dev
 ```
 
-## Available commands
+### Available test-card for buying feature:
+| Brand      | Number         | CVC                 | Date
+| :--------------| :-------------- | :----------------- | :----------------- |
+| Visa   | 4242424242424242          | Any | Any|
 
-Running commands with npm `npm run [command]`
-
-| command         | description                              |
-| :-------------- | :--------------------------------------- |
-| `dev`           | Starts a development instance of the app |
