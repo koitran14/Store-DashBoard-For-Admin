@@ -58,7 +58,7 @@ npm run dev
 
 
 
-## Available commands
+## Command to run
 
 Running commands with npm `npm run [command]`
 
