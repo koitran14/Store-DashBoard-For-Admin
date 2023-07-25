@@ -52,18 +52,20 @@ export default function StoreSwitcher({ className, items = [] }: StoreSwitcherPr
       <PopoverTrigger asChild>
         <Button
           variant="outline"
-          size="sm"
+          size="switcher"
           role="combobox"
           aria-expanded={open}
           aria-label="Select a store"
-          className={cn("w-[200px] justify-between", className)}
+          className={cn("lg:w-[200px] sm:w-[180px] justify-between", className)}
         >
-          <Store className="mr-2 h-4 w-4" />
-          {currentStore?.label}
-          <ChevronsUpDown className="ml-auto h-4 w-4 shrink-0 opacity-50" />
+          <Store className="mx-4 h-5 w-5 sm:h-4 sm:w-4" />
+          <div className="flex items-center text-lg sm:text-base font-medium transition-colors text-black dark:text-teal-400 hover:text-primary">
+            {currentStore?.label}
+          </div>
+          <ChevronsUpDown className="ml-auto h-5 w-5 shrink-0 opacity-50" />
         </Button>
       </PopoverTrigger>
-      <PopoverContent className="w-[200px] p-0">
+      <PopoverContent className="w-[200px] p-2">
         <Command>
           <CommandList>
             <CommandInput placeholder="Search store..." />

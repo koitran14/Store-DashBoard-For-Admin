@@ -30,8 +30,14 @@ export default async function DashboardLayout({
 
   return (
     <>
-      <Navbar />
-      {children}
+      <div className='flex flex-row'>
+        <div>
+          <Navbar />
+        </div>
+        <div className="h-full w-full lg:p-4 sm:p-2">
+          {children}
+        </div>
+      </div>
     </>
   );
 };
