@@ -11,6 +11,7 @@ import { getStockCount } from "@/actions/get-stock-count";
 import { formatter } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
 import OrderPartPage from "./components/orders-part";
+import { UserButton } from "@clerk/nextjs";
 
 interface DashboardPageProps {
   params: {
@@ -31,7 +32,14 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
       <div className="flex-1 space-y-4 px-8 pt-4">
         <div className="flex justify-between items-center">
           <Heading title="Dashboard" description="Overview of your store" />
-          <ThemeToggle />
+          <div className="flex-row flex gap-3 justify-center items-center border border-input rounded-md">
+            <div>
+              <ThemeToggle />
+            </div>
+            <div className="mr-2">
+              <UserButton/>
+            </div>
+          </div>
         </div>
         <Separator />
         <div className="xl:grid xl:grid-cols-3 gap-6">
