@@ -59,7 +59,7 @@ export default function StoreSwitcher({ className, items = [] }: StoreSwitcherPr
           className={cn("lg:w-[200px] sm:w-[180px] justify-between", className)}
         >
           <Store className="mx-4 h-5 w-5 sm:h-4 sm:w-4" />
-          <div className="flex items-center text-lg sm:text-base font-medium transition-colors text-black dark:text-teal-400 hover:text-primary">
+          <div className="flex items-center text-base font-medium transition-colors text-black dark:text-teal-400 hover:text-primary">
             {currentStore?.label}
           </div>
           <ChevronsUpDown className="ml-auto h-5 w-5 shrink-0 opacity-50" />
