@@ -80,17 +80,17 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
                   <div className="text-xl font-bold mt-8">{stockCount}</div>
                 </CardContent>
               </Card>
+              <Card className="xl:col-span-3 h-full">
+                <CardHeader>
+                  <CardTitle className="text-xl ml-2 mt-2 mb-2">Overview</CardTitle>
+                </CardHeader>
+                <CardContent className="pl-2 mt-6">
+                  <Overview data={graphRevenue} />
+                </CardContent>
+              </Card>
             </div>
-            <Card className="col-span-4 mt-6">
-              <CardHeader>
-                <CardTitle className="text-xl">Overview</CardTitle>
-              </CardHeader>
-              <CardContent className="pl-2">
-                <Overview data={graphRevenue} />
-              </CardContent>
-            </Card>
           </div>
-          <div className="sm:mt-6 xl:mt-0">
+          <div className="sm:mt-6 xl:mt-0 h-full">
             <Card className="col-span-4">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-xl">Orders</CardTitle>
