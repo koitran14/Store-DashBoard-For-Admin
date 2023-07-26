@@ -26,14 +26,19 @@ interface DataTableProps<TData, TValue> {
   columns: ColumnDef<TData, TValue>[]
   data: TData[],
   searchKey: string;
+  pageLimit: number;
 }
 
 export function DataTable<TData, TValue>({
   columns,
   data,
   searchKey,
+  pageLimit
 }: DataTableProps<TData, TValue>) {
   const [columnFilters, setColumnFilters] = useState<ColumnFiltersState>([]);
+  const [currentPage, setCurrentPage] = useState(0);
+
+
   const table = useReactTable({
     data,
     columns,
@@ -45,6 +50,11 @@ export function DataTable<TData, TValue>({
       columnFilters,
     }
   });
+
+  const totalPages = Math.ceil(data.length / pageLimit);
+
+  const startIndex = currentPage * pageLimit;
+  const endIndex = startIndex + pageLimit;
 
   return (
     <div>
@@ -79,43 +89,53 @@ export function DataTable<TData, TValue>({
             ))}
           </TableHeader>
           <TableBody>
-            {table.getRowModel().rows?.length ? (
-              table.getRowModel().rows.map((row) => (
-                <TableRow
-                  key={row.id}
-                  data-state={row.getIsSelected() && "selected"}
-                >
-                  {row.getVisibleCells().map((cell) => (
-                    <TableCell key={cell.id}>
-                      {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                    </TableCell>
-                  ))}
-                </TableRow>
-              ))
+          {table.getRowModel().rows?.length ? (
+              table.getRowModel().rows
+                .slice(startIndex, endIndex) // Show only the rows for the current page
+                .map((row) => (
+                  <TableRow
+                    key={row.id}
+                    data-state={row.getIsSelected() && "selected"}
+                  >
+                    {row.getVisibleCells().map((cell) => (
+                      <TableCell key={cell.id}>
+                        {flexRender(
+                          cell.column.columnDef.cell,
+                          cell.getContext()
+                        )}
+                      </TableCell>
+                    ))}
+                  </TableRow>
+                ))
             ) : (
               <TableRow>
-                <TableCell colSpan={columns.length} className="h-24 text-center">
-                  No results.
-                </TableCell>
-              </TableRow>
-            )}
-          </TableBody>
-        </Table>
-      </div>
-      <div className="flex items-center justify-end space-x-2 py-4">
-        <Button
+              <TableCell
+                colSpan={columns.length}
+                className="h-24 text-center"
+              >
+                No results.
+              </TableCell>
+            </TableRow>
+          )}
+        </TableBody>
+      </Table>
+    </div>
+    <div className="flex items-center justify-end space-x-2 py-4">
+    <Button
           variant="outline"
           size="sm"
-          onClick={() => table.previousPage()}
-          disabled={!table.getCanPreviousPage()}
+          onClick={() => setCurrentPage((prevPage) => Math.max(prevPage - 1, 0))}
+          disabled={currentPage === 0}
         >
           Previous
         </Button>
         <Button
           variant="outline"
           size="sm"
-          onClick={() => table.nextPage()}
-          disabled={!table.getCanNextPage()}
+          onClick={() =>
+            setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages - 1))
+          }
+          disabled={currentPage === totalPages - 1 || data.length === 0}
         >
           Next
         </Button>

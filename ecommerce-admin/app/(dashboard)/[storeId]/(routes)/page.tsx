@@ -10,6 +10,7 @@ import { getGraphRevenue } from "@/actions/get-graph-revenue";
 import { getStockCount } from "@/actions/get-stock-count";
 import { formatter } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
+import OrderPartPage from "./components/orders-part";
 
 interface DashboardPageProps {
   params: {
@@ -35,53 +36,56 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
         <Separator />
         <div className="xl:grid xl:grid-cols-3 gap-6">
           <div className="lg:col-span-2">
-            <div className="grid gap-4 xl:grid-cols-3 lg:grid-rows">
-              <Card>
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-base font-medium">
+            <div className="grid xl:gap-4 lg:gap-6 xl:grid-cols-3 lg:grid-rows">
+              <Card className="overflow-hidden">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 dark:bg-slate-800">
+                  <CardTitle className="text-xl">
                     Total Revenue
                   </CardTitle>
                   <DollarSign className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
+                <Separator />
                 <CardContent>
                   <div className="text-2xl font-bold mt-8">{formatter.format(totalRevenue)}</div>
                 </CardContent>
               </Card>
-              <Card>
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-base font-medium">Sales</CardTitle>
+              <Card className="overflow-hidden">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 dark:bg-slate-800">
+                  <CardTitle className="text-xl">Sales</CardTitle>
                   <CreditCard className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
+                <Separator />
                 <CardContent>
                   <div className="text-2xl font-bold mt-8">+{salesCount}</div>
                 </CardContent>
               </Card>
-              <Card>
-                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                  <CardTitle className="text-base font-medium">Products In Stock</CardTitle>
+              <Card className="overflow-hidden">
+                <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 dark:bg-slate-800">
+                  <CardTitle className="text-xl ">Products In Stock</CardTitle>
                   <Package className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
+                <Separator />
                 <CardContent>
                   <div className="text-2xl font-bold mt-8">{stockCount}</div>
                 </CardContent>
               </Card>
             </div>
-            <Card className="col-span-4 mt-4">
+            <Card className="col-span-4 mt-6">
               <CardHeader>
-                <CardTitle>Overview</CardTitle>
+                <CardTitle className="text-2xl">Overview</CardTitle>
               </CardHeader>
               <CardContent className="pl-2">
                 <Overview data={graphRevenue} />
               </CardContent>
             </Card>
           </div>
-          <div className=" grid-2">
+          <div className="lg:mt-6 xl:mt-0">
             <Card className="col-span-4">
-                <CardHeader>
-                  <CardTitle>Orders</CardTitle>
+                <CardHeader >
+                  <CardTitle className="text-2xl">Orders</CardTitle>
                 </CardHeader>
-                <CardContent className="pl-2">
-                  <Overview data={graphRevenue} />
+                <CardContent>
+                  <OrderPartPage params={{ storeId: params.storeId }} />
                 </CardContent>
               </Card>
           </div>
