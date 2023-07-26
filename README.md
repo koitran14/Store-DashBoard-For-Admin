@@ -50,9 +50,3 @@ npx prisma db push
 ```shell
 npm run dev
 ```
-
-### Available test-card for buying feature:
-| Brand      | Number         | CVC                 | Date
-| :--------------| :-------------- | :----------------- | :----------------- |
-| Visa   | 4242424242424242          | Any | Any|
-
