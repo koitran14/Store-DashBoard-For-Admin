@@ -37,7 +37,7 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
               <ThemeToggle />
             </div>
             <div className="mr-2">
-              <UserButton/>
+              <UserButton />
             </div>
           </div>
         </div>
