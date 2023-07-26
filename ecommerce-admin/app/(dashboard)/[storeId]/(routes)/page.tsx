@@ -32,8 +32,8 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
 
   return (
     <div className="flex-col">
-      <div className="flex-1 space-y-4 px-8 pt-4">
-        <div className="flex justify-between items-center">
+      <div className="flex-1 space-y-4 px-3 pt-4">
+        <div className="flex justify-between items-center mr-2">
           <Heading title="Dashboard" description="Overview of your store" />
           <div className="flex-row flex gap-2 justify-center items-center border border-input rounded-md">
             <div>
@@ -92,11 +92,14 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
           </div>
           <div className="sm:mt-6 xl:mt-0 h-full">
             <Card className="col-span-4">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-xl">Orders</CardTitle>
-                <LinkToOrders />
+              <CardHeader className="flex flex-row items-center justify-between">
+                <CardTitle className="text-xl items-center">Orders</CardTitle>
+                <div>
+                  <LinkToOrders />
+                </div>
               </CardHeader>
-              <CardContent>
+              <Separator />
+              <CardContent className="mt-2">
                 <OrderPartPage params={{ storeId: params.storeId }} />
               </CardContent>
             </Card>

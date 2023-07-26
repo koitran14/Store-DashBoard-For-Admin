@@ -13,7 +13,7 @@ export const OrderClient: React.FC<OrderClientProps> = ({
 }) => {
   return (
     <>
-      <DataTable searchKey="phone" columns={columns} data={data} pageLimit={4}/>
+      <DataTable searchKey="phone" columns={columns} data={data} pageLimit={3}/>
     </>
   );
 };

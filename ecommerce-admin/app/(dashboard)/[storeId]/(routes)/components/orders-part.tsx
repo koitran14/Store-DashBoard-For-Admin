@@ -43,7 +43,7 @@ const OrderPartPage = async ({
 
   return (
     <div className="flex-col">
-      <div className="flex-1 ">
+      <div className="flex-1">
         <OrderClient data={formattedOrders} />
       </div>
     </div>

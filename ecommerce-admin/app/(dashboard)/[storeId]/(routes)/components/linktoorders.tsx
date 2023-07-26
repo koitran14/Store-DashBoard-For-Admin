@@ -25,10 +25,10 @@ const gotoOrders = async () => {
         <Button
             disabled={loading}
             variant="outline"
-            size="icon"
+            size="smallericon"
             onClick={() => gotoOrders()}
         >
-            <ArrowUpRight className="text-muted-foreground"/>
+            <ArrowUpRight className="text-muted-foreground items-center"/>
         </Button>
     );
 }
