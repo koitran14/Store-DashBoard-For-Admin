@@ -12,6 +12,7 @@ import { formatter } from "@/lib/utils";
 import { ThemeToggle } from "@/components/theme-toggle";
 import OrderPartPage from "./components/orders-part";
 import { UserButton } from "@clerk/nextjs";
+import LinkToOrders from "./components/linktoorders";
 
 interface DashboardPageProps {
   params: {
@@ -26,6 +27,8 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
   const graphRevenue = await getGraphRevenue(params.storeId);
   const salesCount = await getSalesCount(params.storeId);
   const stockCount = await getStockCount(params.storeId);
+
+  
 
   return (
     <div className="flex-col">
@@ -44,7 +47,7 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
         <Separator />
         <div className="xl:grid xl:grid-cols-3 gap-6">
           <div className="lg:col-span-2">
-            <div className="grid xl:gap-4 lg:gap-6 xl:grid-cols-3 lg:grid-rows">
+            <div className="grid sm:gap-6 xl:grid-cols-3 lg:grid-rows">
               <Card className="overflow-hidden">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 dark:bg-slate-800">
                   <CardTitle className="text-xl">
@@ -87,15 +90,16 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
               </CardContent>
             </Card>
           </div>
-          <div className="lg:mt-6 xl:mt-0">
+          <div className="sm:mt-6 xl:mt-0">
             <Card className="col-span-4">
-                <CardHeader >
-                  <CardTitle className="text-2xl">Orders</CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <OrderPartPage params={{ storeId: params.storeId }} />
-                </CardContent>
-              </Card>
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 dark:bg-slate-800">
+                <CardTitle className="text-2xl">Orders</CardTitle>
+                <LinkToOrders />
+              </CardHeader>
+              <CardContent>
+                <OrderPartPage params={{ storeId: params.storeId }} />
+              </CardContent>
+            </Card>
           </div>
         </div>
       </div>
