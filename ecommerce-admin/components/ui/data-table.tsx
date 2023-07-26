@@ -75,7 +75,7 @@ export function DataTable<TData, TValue>({
               <TableRow key={headerGroup.id}>
                 {headerGroup.headers.map((header) => {
                   return (
-                    <TableHead key={header.id} className="text-base">
+                    <TableHead key={header.id} className="text-sm">
                       {header.isPlaceholder
                         ? null
                         : flexRender(
@@ -93,7 +93,7 @@ export function DataTable<TData, TValue>({
               table.getRowModel().rows
                 .slice(startIndex, endIndex) // Show only the rows for the current page
                 .map((row) => (
-                  <TableRow className="text-base"
+                  <TableRow className="text-sm"
                     key={row.id}
                     data-state={row.getIsSelected() && "selected"}
                   >

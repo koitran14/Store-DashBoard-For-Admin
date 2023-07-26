@@ -50,40 +50,40 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
             <div className="grid sm:gap-6 xl:grid-cols-3 lg:grid-rows">
               <Card className="overflow-hidden">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 dark:bg-slate-800">
-                  <CardTitle className="text-xl">
+                  <CardTitle className="text-base">
                     Total Revenue
                   </CardTitle>
                   <DollarSign className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <Separator />
                 <CardContent>
-                  <div className="text-2xl font-bold mt-8">{formatter.format(totalRevenue)}</div>
+                  <div className="text-xl font-bold mt-8">{formatter.format(totalRevenue)}</div>
                 </CardContent>
               </Card>
               <Card className="overflow-hidden">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 dark:bg-slate-800">
-                  <CardTitle className="text-xl">Sales</CardTitle>
+                  <CardTitle className="text-base">Sales</CardTitle>
                   <CreditCard className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <Separator />
                 <CardContent>
-                  <div className="text-2xl font-bold mt-8">+{salesCount}</div>
+                  <div className="text-xl font-bold mt-8">+{salesCount}</div>
                 </CardContent>
               </Card>
               <Card className="overflow-hidden">
                 <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 dark:bg-slate-800">
-                  <CardTitle className="text-xl ">Products In Stock</CardTitle>
+                  <CardTitle className="text-base ">Products In Stock</CardTitle>
                   <Package className="h-4 w-4 text-muted-foreground" />
                 </CardHeader>
                 <Separator />
                 <CardContent>
-                  <div className="text-2xl font-bold mt-8">{stockCount}</div>
+                  <div className="text-xl font-bold mt-8">{stockCount}</div>
                 </CardContent>
               </Card>
             </div>
             <Card className="col-span-4 mt-6">
               <CardHeader>
-                <CardTitle className="text-2xl">Overview</CardTitle>
+                <CardTitle className="text-xl">Overview</CardTitle>
               </CardHeader>
               <CardContent className="pl-2">
                 <Overview data={graphRevenue} />
@@ -93,7 +93,7 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
           <div className="sm:mt-6 xl:mt-0">
             <Card className="col-span-4">
               <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
-                <CardTitle className="text-2xl">Orders</CardTitle>
+                <CardTitle className="text-xl">Orders</CardTitle>
                 <LinkToOrders />
               </CardHeader>
               <CardContent>
