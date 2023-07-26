@@ -35,7 +35,7 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
       <div className="flex-1 space-y-4 px-8 pt-4">
         <div className="flex justify-between items-center">
           <Heading title="Dashboard" description="Overview of your store" />
-          <div className="flex-row flex gap-3 justify-center items-center border border-input rounded-md">
+          <div className="flex-row flex gap-2 justify-center items-center border border-input rounded-md">
             <div>
               <ThemeToggle />
             </div>
