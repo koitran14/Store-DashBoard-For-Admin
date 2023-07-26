@@ -92,7 +92,7 @@ const DashboardPage: React.FC<DashboardPageProps> = async ({
           </div>
           <div className="sm:mt-6 xl:mt-0">
             <Card className="col-span-4">
-              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2 dark:bg-slate-800">
+              <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
                 <CardTitle className="text-2xl">Orders</CardTitle>
                 <LinkToOrders />
               </CardHeader>
