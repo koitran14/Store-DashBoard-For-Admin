@@ -40,7 +40,7 @@ const Navbar = async () => {
               <Button
                 size="switcher"
                 variant="outline">
-                  <div className=" flex items-center text-xl font-medium transition-colors text-muted-foreground active:text-black dark:active:text-white hover:text-primary"> 
+                  <div className=" flex items-center text-base font-medium transition-colors text-muted-foreground active:text-black dark:active:text-white hover:text-primary"> 
                     <LogOut className="lg:mr-6 sm:mr-3 h-5 w-5" />
                     Log out 
                   </div>
