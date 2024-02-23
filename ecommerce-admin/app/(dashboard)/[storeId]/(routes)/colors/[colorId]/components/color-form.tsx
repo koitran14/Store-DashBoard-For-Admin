@@ -116,7 +116,7 @@ export const ColorForm: React.FC<ColorFormProps> = ({
       <Separator />
       <Form {...form}>
         <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8 w-full">
-          <div className="md:grid md:grid-cols-3 gap-8">
+          <div className="md:grid md:grid-cols-3 md:gap-8 flex flex-col gap-y-5">
             <FormField
               control={form.control}
               name="name"
@@ -150,15 +150,17 @@ export const ColorForm: React.FC<ColorFormProps> = ({
               )}
             />
           </div>
-          <Button disabled={loading} className="ml-auto" type="submit">
-            {loading && (
-              <LoadingButton />
-            )}
-            {action}
-          </Button>
-          <Button disabled={loading} className="bg-gray-400 ml-1" type="button" onClick={() => router.push(`/${params.storeId}/products`)}>
-            Cancel
-          </Button>
+          <div className="flex flex-row gap-x-1">
+            <Button disabled={loading} className="ml-auto" type="submit">
+              {loading && (
+                <LoadingButton />
+              )}
+              {action}
+            </Button>
+            <Button disabled={loading} variant={"outline"} className="ml-1" type="button" onClick={() => router.push(`/${params.storeId}/products`)}>
+              Cancel
+            </Button>
+          </div>
         </form>
       </Form>
     </>

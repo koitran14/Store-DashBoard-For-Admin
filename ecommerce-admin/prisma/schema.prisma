@@ -3,13 +3,13 @@ generator client {
 }
 
 datasource db {
-  provider = "mysql"
+  provider = "mongodb"
   url = env("DATABASE_URL")
   relationMode = "prisma"
 }
 
 model Store {
-  id              String    @id @default(uuid())
+  id              String    @id @default(auto()) @map("_id") @db.ObjectId
   name            String
   userId          String
   billboards      Billboard[] @relation("StoreToBillboard")
@@ -23,8 +23,8 @@ model Store {
 }
 
 model Billboard {
-  id          String @id @default(uuid())
-  storeId     String
+  id          String @id @default(auto()) @map("_id") @db.ObjectId
+  storeId     String  @db.ObjectId
   store       Store @relation("StoreToBillboard", fields: [storeId], references: [id])
   label       String
   imageUrl    String
@@ -36,10 +36,10 @@ model Billboard {
 }
 
 model Category {
-  id          String      @id @default(uuid())
-  storeId     String      // Foreign Key to Store
+  id          String      @id @default(auto()) @map("_id") @db.ObjectId
+  storeId     String      @db.ObjectId // Foreign Key to Store
   store       Store       @relation("StoreToCategory", fields: [storeId], references: [id])
-  billboardId String      // Foreign Key to Billboard
+  billboardId String      @db.ObjectId // Foreign Key to Billboard
   billboard   Billboard   @relation(fields: [billboardId], references: [id])
   name        String
   products    Product[]   @relation("CategoryToProduct")
@@ -51,18 +51,18 @@ model Category {
 }
 
 model Product {
-  id          String    @id @default(uuid())
-  storeId     String    // Foreign Key to Store
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  storeId     String    @db.ObjectId // Foreign Key to Store
   store       Store     @relation("StoreToProduct", fields: [storeId], references: [id])
-  categoryId  String    // Foreign Key to Category
+  categoryId  String    @db.ObjectId // Foreign Key to Category
   category    Category  @relation("CategoryToProduct", fields: [categoryId], references: [id])
   name        String
-  price       Decimal
+  price       Float
   isFeatured  Boolean   @default(false)
   isArchived  Boolean   @default(false)
-  sizeId      String    // Foreign Key to Size
+  sizeId      String    @db.ObjectId // Foreign Key to Size
   size        Size      @relation(fields: [sizeId], references: [id])
-  colorId     String    // Foreign Key to Color
+  colorId     String    @db.ObjectId // Foreign Key to Color
   color       Color     @relation(fields: [colorId], references: [id])
   images      Image[]   // Relation to Image model
   orderItems  OrderItem[]   // Relation to Order model
@@ -76,8 +76,8 @@ model Product {
 }
 
 model Order {
-  id        String    @id @default(uuid())
-  storeId     String    // Foreign Key to Store
+  id        String    @id @default(auto()) @map("_id") @db.ObjectId
+  storeId     String   @db.ObjectId // Foreign Key to Store
   store       Store     @relation("StoreToOrder", fields: [storeId], references: [id])
   orderItems OrderItem[] // Relation to OrderItem model
   isPaid     Boolean   @default(false)
@@ -91,10 +91,10 @@ model Order {
 
 // Intermediary for a many-to-many relationship
 model OrderItem {
-  id        String  @id @default(uuid())
-  orderId   String  // Foreign Key to Order
+  id        String  @id @default(auto()) @map("_id") @db.ObjectId
+  orderId   String  @db.ObjectId // Foreign Key to Order
   order     Order   @relation(fields: [orderId], references: [id])
-  productId String  // Foreign Key to Product
+  productId String  @db.ObjectId // Foreign Key to Product
   product   Product @relation(fields: [productId], references: [id])
 
   @@index([orderId])
@@ -102,8 +102,8 @@ model OrderItem {
 }
 
 model Size {
-  id          String    @id @default(uuid())
-  storeId     String    // Foreign Key to Store
+  id          String    @id @default(auto()) @map("_id") @db.ObjectId
+  storeId     String    @db.ObjectId // Foreign Key to Store
   store       Store     @relation("StoreToSize", fields: [storeId], references: [id])
   name        String
   value       String
@@ -115,8 +115,8 @@ model Size {
 }
 
 model Color {
-  id          String   @id @default(uuid())
-  storeId     String   // Foreign Key to Store
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  storeId     String   @db.ObjectId // Foreign Key to Store
   store       Store    @relation("StoreToColor", fields: [storeId], references: [id])
   name        String
   value       String
@@ -128,8 +128,8 @@ model Color {
 }
 
 model Image {
-  id          String   @id @default(uuid())
-  productId   String   // Foreign Key to Product
+  id          String   @id @default(auto()) @map("_id") @db.ObjectId
+  productId   String   @db.ObjectId // Foreign Key to Product
   product     Product  @relation(fields: [productId], references: [id], onDelete: Cascade)
   url         String   // URL of the image
   createdAt   DateTime @default(now())

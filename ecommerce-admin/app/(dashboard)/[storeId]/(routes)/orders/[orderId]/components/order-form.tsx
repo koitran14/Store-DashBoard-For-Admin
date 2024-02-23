@@ -131,7 +131,7 @@ export const OrderForm: React.FC<OrderFormProps> = ({
                             </FormItem>
                         )}
                     />
-                    <div className="grid grid-cols-3 gap-8">
+                    <div className="md:grid md:grid-cols-3 md:gap-8 flex flex-col gap-y-5">
                         <FormField 
                             control={form.control}
                             name="label"

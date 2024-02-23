@@ -149,15 +149,17 @@ export const BillboardForm: React.FC<BillboardFormProps> = ({
               )}
             />
           </div>
+          <div className="flex flex-row gap-x-1">
           <Button disabled={loading} className="ml-auto" type="submit">
             {loading && (
               <LoadingButton/>
             )}
             {action}
           </Button>
-          <Button disabled={loading} className="bg-gray-400 ml-1" type="button" onClick={() => router.push(`/${params.storeId}/products`)}>
+          <Button disabled={loading} variant={"outline"} className="ml-1" type="button" onClick={() => router.push(`/${params.storeId}/products`)}>
             Cancel
           </Button>
+          </div>
         </form>
       </Form>
     </>

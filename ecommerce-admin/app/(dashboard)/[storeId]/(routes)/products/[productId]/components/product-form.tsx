@@ -84,12 +84,14 @@ export const ProductForm: React.FC<ProductFormProps> = ({
 
   const form = useForm<ProductFormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues
+    defaultValues,
   });
 
   const onSubmit = async (data: ProductFormValues) => {
     try {
       setLoading(true);
+
+      data.price = data.price as number;
       if (initialData) {
         await axios.patch(`/api/${params.storeId}/products/${params.productId}`, data);
       } else {
@@ -162,7 +164,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               </FormItem>
             )}
           />
-          <div className="md:grid md:grid-cols-3 gap-8">
+          <div className="md:grid md:grid-cols-3 md:gap-8 flex flex-col gap-y-5">
             <FormField
               control={form.control}
               name="name"
@@ -183,7 +185,7 @@ export const ProductForm: React.FC<ProductFormProps> = ({
                 <FormItem>
                   <FormLabel>Price</FormLabel>
                   <FormControl>
-                    <Input type="number" disabled={loading} placeholder="9.99" {...field} />
+                    <Input type="number" step={0.01} disabled={loading} placeholder="9.99" {...field} />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -302,15 +304,17 @@ export const ProductForm: React.FC<ProductFormProps> = ({
               )}
             />
           </div>
-          <Button disabled={loading} className="ml-auto" type="submit">
-            {loading && (
-              <LoadingButton />
-            )}
-            {action}
-          </Button>
-          <Button disabled={loading} className="bg-gray-400 ml-1" type="button" onClick={() => router.push(`/${params.storeId}/products`)}>
-            Cancel
-          </Button>
+          <div className="flex flex-row gap-x-1">
+            <Button disabled={loading} className="ml-auto" type="submit">
+              {loading && (
+                <LoadingButton />
+              )}
+              {action}
+            </Button>
+            <Button disabled={loading} variant={"outline"} className="ml-1" type="button" onClick={() => router.push(`/${params.storeId}/products`)}>
+              Cancel
+            </Button>
+          </div>
         </form>
       </Form>
     </>
